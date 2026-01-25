@@ -1,0 +1,31 @@
+version: 3
+
+tasks:
+  remote:sync:
+    dotenv:
+      - .env.remote
+    cmds:
+      - rsync -avz --delete ./config/ingester docker:$CONFIG_DIR
+    desc: "Sync local application files to remote server"
+
+  remote:
+    dotenv:
+      - .env.remote
+    cmds:
+      - docker compose --profile remote {{.CLI_ARGS}}
+    desc: "Deploy the application to the production environment"
+
+  remote:clean:
+    dotenv:
+      - .env.remote
+    cmds:
+      - docker compose --profile remote rm -v -f
+    desc: "Clean up unused application containers on the production environment"
+
+  remote:deploy:
+    dotenv:
+      - .env.remote
+    cmds:
+      - task: remote:sync
+      - docker compose --profile remote up -d --build --remove-orphans {{.CLI_ARGS}}
+    desc: "Deploy the application to the production environment"

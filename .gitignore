@@ -1,0 +1,6 @@
+.idea
+.vscode
+.aider*
+/tmp
+/bin
+/data

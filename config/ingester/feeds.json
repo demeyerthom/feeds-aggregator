@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Sentry changelog",
+    "xmlUrl": "https://github.com/getsentry/sentry/releases.atom"
+  },
+  {
+    "title": "Honeycomb changelog",
+    "xmlUrl": "https://changelog.honeycomb.io/rss"
+  },
+  {
+    "title": "Github changelog",
+    "xmlUrl": "https://github.blog/changelog/feed/"
+  },
+  {
+    "title": "Opentofu changelog",
+    "xmlUrl": "https://github.com/opentofu/opentofu/releases.atom"
+  },
+  {
+    "title": "Go changelog",
+    "xmlUrl": "https://github.com/golang/go/releases.atom"
+  },
+  {
+    "title": "Contentful Changelog",
+    "xmlUrl": "https://www.contentful.com/developers/changelog.rss"
+  },
+  {
+    "title": "Terraform changelog",
+    "xmlUrl": "https://github.com/hashicorp/terraform/releases.atom"
+  },
+  {
+    "title": "Node.js changelog",
+    "xmlUrl": "https://nodejs.org/en/feed/releases.xml"
+  },
+  {
+    "title": "Eli Bendersky's website",
+    "xmlUrl": "http://eli.thegreenplace.net/feed/"
+  },
+  {
+    "title": "Golang Weekly",
+    "xmlUrl": "http://golangweekly.com/rss"
+  },
+  {
+    "title": "Golang News",
+    "xmlUrl": "http://golangnews.com/index.xml"
+  },
+  {
+    "title": "Golang News",
+    "xmlUrl": "http://golangnews.com/index.xml"
+  },
+  {
+    "title": "The Go Blog",
+    "xmlUrl": "http://blog.golang.org/feeds/posts/default"
+  },
+  {
+    "title": "Dave Cheney",
+    "xmlUrl": "http://dave.cheney.net/feed"
+  },
+  {
+    "title": "Awesome Go Weekly",
+    "xmlUrl": "https://go.libhunt.com/newsletter/feed"
+  },
+  {
+    "title": "Reddit - Golang",
+    "xmlUrl": "https://www.reddit.com/r/golang.rss"
+  },
+  {
+    "title": "Terraform Weekly",
+    "xmlUrl": "https://weekly.tf/?format=rss"
+  },
+  {
+    "title": "OpenTofu Blog",
+    "xmlUrl": "https://opentofu.org/blog/rss.xml"
+  },
+  {
+    "title": "Reddit - Terraform",
+    "xmlUrl": "https://www.reddit.com/r/terraform.rss"
+  },
+  {
+    "title": "Node Weekly",
+    "xmlUrl": "http://nodeweekly.com/rss/1j9a0ll9"
+  },
+  {
+    "title": "Reddit - NodeJS",
+    "xmlUrl": "https://www.reddit.com/r/node.rss"
+  },
+  {
+    "title": "React Blog",
+    "xmlUrl": "https://react.dev/rss.xml"
+  },
+  {
+    "title": "Hacker News",
+    "xmlUrl": "https://news.ycombinator.com/rss"
+  },
+  {
+    "title": "Ars Technica",
+    "xmlUrl": "http://feeds.arstechnica.com/arstechnica/index/"
+  },
+  {
+    "title": "Reddit - Technology",
+    "xmlUrl": "https://www.reddit.com/r/technology.rss"
+  },
+  {
+    "title": "Reddit - Programming",
+    "xmlUrl": "https://www.reddit.com/r/programming.rss"
+  },
+  {
+    "title": "Scott Hanselman's Blog",
+    "xmlUrl": "http://feeds.feedburner.com/ScottHanselman"
+  },
+  {
+    "title": "Stack Overflow Blog",
+    "xmlUrl": "http://blog.stackoverflow.com/feed/"
+  },
+  {
+    "title": "High Scalability",
+    "xmlUrl": "http://feeds.feedburner.com/HighScalability"
+  },
+  {
+    "title": "Confluent: Data in motion",
+    "xmlUrl": "https://www.confluent.io/feed/"
+  },
+  {
+    "title": "Hacker News Front Page",
+    "xmlUrl": "https://hackernewsrss.com/feed.xml"
+  },
+  {
+    "title": "Martin Fowler",
+    "xmlUrl": "http://martinfowler.com/bliki/bliki.atom"
+  },
+  {
+    "title": "David Walsh Blog",
+    "xmlUrl": "http://feeds.feedburner.com/Bludice"
+  },
+  {
+    "title": "Changelog",
+    "xmlUrl": "http://feeds.feedburner.com/thechangelog"
+  },
+  {
+    "title": "The GitHub Blog",
+    "xmlUrl": "https://github.com/blog/all.atom"
+  },
+  {
+    "title": "Google Online Security Blog",
+    "xmlUrl": "http://googleonlinesecurity.blogspot.com/feeds/posts/default"
+  },
+  {
+    "title": "Microservice architecture",
+    "xmlUrl": "http://microservices.io/feed.xml"
+  },
+  {
+    "title": "Blog | GraphQL",
+    "xmlUrl": "http://graphql.org/blog/rss.xml"
+  },
+  {
+    "title": "OpenAPI Initiative",
+    "xmlUrl": "https://www.openapis.org/feed"
+  },
+  {
+    "title": "The Guild Blog",
+    "xmlUrl": "https://the-guild.dev/feed.xml"
+  }
+]

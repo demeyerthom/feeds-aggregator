@@ -1,0 +1,39 @@
+services:
+  ingester:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        COMMAND: ingester
+    image: ingester:latest
+    environment:
+      - SOURCE_FILE=/feeds.json
+      - OTEL_HOST=otel-collector:4318
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - ${CONFIG_DIR:-./config}/ingester/feeds.json:/feeds.json:ro
+    networks:
+      - infrastructure
+    restart: "no"
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        COMMAND: worker
+    image: worker:latest
+    environment:
+      - REDIS_HOST=redis:6379
+      - TEMPORAL_HOST=temporal:7233
+      - OTEL_HOST=otel-collector:4318
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-gemma3}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    restart: unless-stopped
+    networks:
+      - infrastructure
+
+networks:
+  infrastructure:
+    external: true
