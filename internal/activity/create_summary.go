@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 
 	"github.com/demeyerthom/feeds-aggregator/internal"
+	textextractor "github.com/demeyerthom/feeds-aggregator/internal/html"
+	prompt "github.com/demeyerthom/feeds-aggregator/internal/prompt"
 	"github.com/ollama/ollama/api"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -32,12 +34,17 @@ func CreateSummary(c *mongo.Collection, ol *api.Client, model, dataDir string) f
 
 		logger.Info("Read HTML file", "id", feedItemDoc.ID.Hex(), "size", len(htmlContent))
 
-		prompt := "Summarize this in 100 words or less:\n\n" + string(htmlContent)
+		// Extract article text and build a robust prompt
+		articleText, ok := textextractor.ExtractArticleText(string(htmlContent))
+		if !ok || len(articleText) == 0 {
+			articleText = textextractor.StripHTMLToPlainText(string(htmlContent))
+		}
+		promptText := prompt.BuildSummaryPrompt("", feedItemDoc.Link, articleText)
 
 		var summary string
 		req := &api.GenerateRequest{
 			Model:  model,
-			Prompt: prompt,
+			Prompt: promptText,
 		}
 
 		err = ol.Generate(ctx, req, func(resp api.GenerateResponse) error {

@@ -22,9 +22,9 @@ func IngestFeedItem() func(ctx workflow.Context, feedItem internal.FeedItem) err
 		workflow.GetLogger(ctx).Info("Ingest feed item workflow started.", "link", feedItem.Link, "title", feedItem.Title)
 
 		ao := workflow.ActivityOptions{
-			StartToCloseTimeout: 30 * time.Second,
+			StartToCloseTimeout: 5 * time.Minute,
 			RetryPolicy: &temporal.RetryPolicy{
-				MaximumAttempts: 1,
+				MaximumAttempts: 3,
 			},
 		}
 		ctx = workflow.WithActivityOptions(ctx, ao)

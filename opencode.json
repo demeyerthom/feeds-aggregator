@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+    "enabled_providers": ["opencode"],
+  "model": "opencode/gpt-5-nano",
+  "autoupdate": true,
+  "agent": {
+    "plan": {
+      "disable": true
+    },
+    "build": {
+      "disable": true
+    }
+  }
+}

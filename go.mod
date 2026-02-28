@@ -21,6 +21,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.39.0
 	go.temporal.io/sdk v1.39.0
 	go.temporal.io/sdk/contrib/opentracing v0.2.0
+	golang.org/x/net v0.49.0
 )
 
 require (
@@ -64,7 +65,6 @@ require (
 	go.opentelemetry.io/proto/otlp v1.9.0 // indirect
 	go.temporal.io/api v1.60.0 // indirect
 	golang.org/x/crypto v0.47.0 // indirect
-	golang.org/x/net v0.49.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.40.0 // indirect
 	golang.org/x/text v0.33.0 // indirect
