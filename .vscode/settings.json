@@ -1,0 +1,59 @@
+{
+    "explorer.confirmDelete": false,
+    "json.schemaDownload.trustedDomains": {
+      "https://schemastore.azurewebsites.net/": true,
+      "https://raw.githubusercontent.com/": true,
+      "https://www.schemastore.org/": true,
+      "https://json.schemastore.org/": true,
+      "https://json-schema.org/": true,
+      "https://biomejs.dev": true,
+      "https://opencode.ai/": true,
+      "https://models.dev": true
+    },
+    "debug.breakpointsView.presentation": "tree",
+    "workbench.startupEditor": "none",
+    "git.autofetch": true,
+    "workbench.editor.enablePreview": false,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "always",
+      "source.addMissingImports.ts": "always"
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "explorer.confirmDragAndDrop": false,
+    "files.autoSave": "afterDelay",
+    "scm.repositories.selectionMode": "single",
+    "workbench.colorTheme": "Darcula Theme from IntelliJ",
+    "githubPullRequests.pullBranch": "never",
+    "workbench.editor.editorActionsLocation": "titleBar",
+    "debug.toolBarLocation": "docked",
+    "chat.unifiedAgentsBar.enabled": true,
+    "workbench.colorCustomizations": {
+      "gitDecoration.modifiedResourceForeground": "#3778ad",
+      "gitDecoration.stageModifiedResourceForeground": "#3778ad",
+      "gitDecoration.addedResourceForeground": "#3778ad"
+    },
+    "chat.viewSessions.orientation": "stacked",
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "mdb.mcp.server": "autoStartEnabled",
+    "editor.defaultFormatter": null,
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[go]": {
+      "editor.insertSpaces": false
+    },
+    "[markdown]": {
+      "editor.unicodeHighlight.ambiguousCharacters": false,
+      "editor.unicodeHighlight.invisibleCharacters": false,
+      "diffEditor.ignoreTrimWhitespace": false,
+      "editor.wordWrap": "on",
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+      }
+    }
+  }
