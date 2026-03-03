@@ -18,7 +18,7 @@ You create plans. You do NOT write code.
 ## Output
 
 - One or more features created in beans
-- Implementation steps structured as bean tasks connected to the relevant features
+- Implementation steps structured as bean tasks connected to the relevant features. Make sure you adhere to the 
 - Edge cases to handle
 - Open questions (if any)
 
