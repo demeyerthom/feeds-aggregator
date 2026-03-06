@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch ingester",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/cmd/ingester"
+    },
+    {
+      "name": "Launch worker",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceFolder}/cmd/worker"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch both ingester and worker",
+      "configurations": [
+        "Launch ingester",
+        "Launch worker"
+      ]
+    }
+  ]
+}
