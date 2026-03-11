@@ -36,7 +36,7 @@ func CreateSummary(c *mongo.Collection, client openai.Client, model, dataDir str
 
 		// Extract article text and build a robust prompt
 		extractText := textextractor.ExtractArticleText(textLimit)
-		articleText, ok := extractText(string(htmlContent))
+		articleText, ok := extractText(ctx, string(htmlContent))
 		if !ok || len(articleText) == 0 {
 			articleText = textextractor.StripHTMLToPlainText(string(htmlContent))
 		}

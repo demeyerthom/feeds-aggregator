@@ -2,6 +2,7 @@ package textextractor
 
 import (
 	"bytes"
+	"context"
 	"log/slog"
 	"regexp"
 	"strings"
@@ -28,9 +29,9 @@ func init() {
 // ExtractArticleText creates an extractor function that parses HTML and extracts visible article text,
 // stripping boilerplate like scripts, styles, navigation, headers, and footers.
 // The limit parameter controls the maximum number of characters to extract.
-// It returns a function that accepts an HTML string and returns the extracted text and a success boolean.
-func ExtractArticleText(limit int) func(htmlStr string) (string, bool) {
-	return func(htmlStr string) (string, bool) {
+// It returns a function that accepts a context and HTML string, and returns the extracted text and a success boolean.
+func ExtractArticleText(limit int) func(ctx context.Context, htmlStr string) (string, bool) {
+	return func(ctx context.Context, htmlStr string) (string, bool) {
 		doc, err := html.Parse(strings.NewReader(htmlStr))
 		if err != nil {
 			return "", false
@@ -66,7 +67,7 @@ func ExtractArticleText(limit int) func(htmlStr string) (string, bool) {
 		text := strings.TrimSpace(buf.String())
 
 		// Record metric for all extractions
-		textLengthHistogram.Record(nil, int64(len(text)))
+		textLengthHistogram.Record(ctx, int64(len(text)))
 
 		if text == "" {
 			return "", false

@@ -1,6 +1,7 @@
 package textextractor
 
 import (
+	"context"
 	"strings"
 	"testing"
 )
@@ -8,7 +9,7 @@ import (
 func TestExtractArticleText_SimpleHTML(t *testing.T) {
 	html := `<html><body><h1>Title</h1><p>Paragraph one.</p><p>Paragraph two.</p></body></html>`
 	extractor := ExtractArticleText(10000)
-	text, ok := extractor(html)
+	text, ok := extractor(context.Background(), html)
 	if !ok {
 		t.Fatalf("expected success extracting text, got ok=false")
 	}
@@ -23,7 +24,7 @@ func TestExtractArticleText_SimpleHTML(t *testing.T) {
 func TestExtractArticleText_Truncation(t *testing.T) {
 	html := `<html><body><p>This is a long paragraph that should be truncated when the limit is low.</p></body></html>`
 	extractor := ExtractArticleText(10)
-	text, ok := extractor(html)
+	text, ok := extractor(context.Background(), html)
 	if !ok {
 		t.Fatalf("expected success extracting text even with truncation, got ok=false")
 	}
