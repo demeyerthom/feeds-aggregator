@@ -1,11 +1,11 @@
 ---
 # feeds-aggregator-ak1k
 title: Create ProcessContent activity
-status: todo
+status: completed
 type: task
 priority: normal
 created_at: 2026-03-11T19:50:10Z
-updated_at: 2026-03-11T19:50:14Z
+updated_at: 2026-03-11T20:13:52Z
 parent: feeds-aggregator-dft7
 blocked_by:
     - feeds-aggregator-ks02
@@ -36,3 +36,22 @@ Context & Research:
 Open Questions: None
 
 Dependencies: This task depends on the combined prompt being created first
+
+## Summary of Changes
+
+Created internal/activity/process_content.go with the ProcessContent activity that:
+- Follows the closure pattern like existing activities
+- Reads HTML file from dataDir using feedItemDoc.ID.Hex()
+- Extracts article text using textextractor.ExtractArticleText with fallback to StripHTMLToPlainText
+- Calls LLM with prompt.BuildProcessContentPrompt for combined summarization and categorization
+- Parses JSON response into processContentResponse struct with Summary and Categories fields
+- Validates categories count (1-5)
+- Updates MongoDB document with both summary and categories in a single UpdateOne operation
+
+All acceptance criteria met:
+- go build ./internal/activity succeeds
+- Activity follows closure pattern
+- Handles JSON parsing errors with clear logging
+- Updates MongoDB document with both summary and categories
+
+## Coder Notes\n- Created internal/activity/process_content.go with ProcessContent activity\n- Follows closure pattern like existing activities\n- Uses BuildProcessContentPrompt for combined LLM call\n- Parses JSON response into struct with Summary and Categories fields\n- Validates 1-5 categories (reuses ErrInvalidCategoryCount)\n- Single MongoDB UpdateOne for both fields\n- Build verified successful
