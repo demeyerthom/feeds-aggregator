@@ -1,10 +1,11 @@
 ---
 # feeds-aggregator-ycb8
 title: Create CategorizeContent activity
-status: todo
+status: completed
 type: task
+priority: normal
 created_at: 2026-03-11T16:26:32Z
-updated_at: 2026-03-11T16:26:32Z
+updated_at: 2026-03-11T16:49:47Z
 parent: feeds-aggregator-nfb7
 blocked_by:
     - feeds-aggregator-8287
@@ -31,3 +32,14 @@ Acceptance Criteria:
 - Correctly calls LLM and parses JSON response
 - Updates MongoDB document with categories
 - Tests pass
+
+## Summary of Changes
+
+- Created  with the CategorizeContent function
+- Created  with comprehensive tests
+- Activity follows the existing closure pattern (same as CreateSummary)
+- Uses  for categorization
+- Parses JSON response to extract 1-5 categories
+- Updates MongoDB document with categories array using 
+- Added  sentinel error for validation failures
+- All tests pass
