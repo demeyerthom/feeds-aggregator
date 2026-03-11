@@ -63,13 +63,15 @@ type Configuration struct {
 		Limit int `env:"TEXT_LIMIT,default=400000"`
 	}
 	Ollama struct {
-		Host  string `env:"OLLAMA_HOST,default=http://localhost:11434"`
-		Model string `env:"OLLAMA_MODEL,default=gemma3"`
+		Enabled bool   `env:"OLLAMA_ENABLED,default=false"`
+		Host    string `env:"OLLAMA_HOST,default=http://localhost:11434"`
+		Model   string `env:"OLLAMA_MODEL,default=gemma3"`
 	}
 	OpenCode struct {
-		Host   string `env:"OPENCODE_HOST,default=https://opencode.ai/zen/v1"`
-		Model  string `env:"OPENCODE_MODEL,default=big-pickle"`
-		APIKey string `env:"OPENCODE_API_KEY"`
+		Enabled bool   `env:"OPENCODE_ENABLED,default=false"`
+		Host    string `env:"OPENCODE_HOST,default=https://opencode.ai/zen/v1"`
+		Model   string `env:"OPENCODE_MODEL,default=big-pickle"`
+		APIKey  string `env:"OPENCODE_API_KEY"`
 	}
 }
 
@@ -177,16 +179,42 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Initialize OpenCode client
-	if cfg.OpenCode.APIKey == "" {
-		slog.Error("OPENCODE_API_KEY is required")
+	// Validate provider configuration: exactly one must be enabled
+	ollamaEnabled := cfg.Ollama.Enabled
+	openCodeEnabled := cfg.OpenCode.Enabled
+
+	if ollamaEnabled && openCodeEnabled {
+		slog.Error("Both Ollama and OpenCode providers are enabled. Exactly one provider must be enabled.")
 		os.Exit(1)
 	}
-	zenClient = openai.NewClient(
-		option.WithAPIKey(cfg.OpenCode.APIKey),
-		option.WithBaseURL(cfg.OpenCode.Host),
-	)
-	slog.Info("Initialized OpenCode client", "model", cfg.OpenCode.Model, "host", cfg.OpenCode.Host)
+	if !ollamaEnabled && !openCodeEnabled {
+		slog.Error("No provider is enabled. Enable either Ollama (OLLAMA_ENABLED=true) or OpenCode (OPENCODE_ENABLED=true).")
+		os.Exit(1)
+	}
+
+	// Initialize the configured provider and determine the model to use
+	var model string
+	if openCodeEnabled {
+		if cfg.OpenCode.APIKey == "" {
+			slog.Error("OPENCODE_API_KEY is required when OpenCode provider is enabled")
+			os.Exit(1)
+		}
+		zenClient = openai.NewClient(
+			option.WithAPIKey(cfg.OpenCode.APIKey),
+			option.WithBaseURL(cfg.OpenCode.Host),
+		)
+		model = cfg.OpenCode.Model
+		slog.Info("Initialized OpenCode client", "model", model, "host", cfg.OpenCode.Host)
+	} else {
+		// Ollama OpenAI compatibility: baseURL = OLLAMA_HOST + "/v1/", apiKey = "ollama" (required but ignored)
+		ollamaBaseURL := cfg.Ollama.Host + "/v1/"
+		zenClient = openai.NewClient(
+			option.WithAPIKey("ollama"),
+			option.WithBaseURL(ollamaBaseURL),
+		)
+		model = cfg.Ollama.Model
+		slog.Info("Initialized Ollama client", "model", model, "host", cfg.Ollama.Host, "baseURL", ollamaBaseURL)
+	}
 
 	// Create interceptor
 	tracingInterceptor, err := opentracing.NewInterceptor(opentracing.TracerOptions{})
@@ -222,13 +250,13 @@ func main() {
 		Name: internal.GetFunctionName(internalactivity.FetchHTML),
 	})
 	w.RegisterActivityWithOptions(
-		internalactivity.CreateSummary(feedItemCollection, zenClient, cfg.OpenCode.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
+		internalactivity.CreateSummary(feedItemCollection, zenClient, model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CreateSummary),
 		},
 	)
 	w.RegisterActivityWithOptions(
-		internalactivity.CategorizeContent(feedItemCollection, zenClient, cfg.OpenCode.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
+		internalactivity.CategorizeContent(feedItemCollection, zenClient, model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CategorizeContent),
 		},
