@@ -1,10 +1,11 @@
 ---
 # feeds-aggregator-vxnm
 title: Add content categorization to feed item processing
-status: todo
+status: completed
 type: epic
+priority: normal
 created_at: 2026-03-11T16:25:54Z
-updated_at: 2026-03-11T16:25:54Z
+updated_at: 2026-03-11T17:41:34Z
 ---
 
 Add a new step to the Temporal workflow that uses an LLM to categorize blog posts based on their content. Categories are stored in MongoDB for later filtering and organization.

@@ -59,9 +59,12 @@ type Configuration struct {
 	Storage struct {
 		HTMLDir string `env:"HTML_STORAGE_DIR,default=./data"`
 	}
+	TextExtractor struct {
+		Limit int `env:"TEXT_LIMIT,default=400000"`
+	}
 	Zen struct {
 		APIKey string `env:"ZEN_API_KEY"`
-		Model  string `env:"ZEN_MODEL,default=opencode/big-pickle"`
+		Model  string `env:"ZEN_MODEL,default=big-pickle"`
 	}
 }
 

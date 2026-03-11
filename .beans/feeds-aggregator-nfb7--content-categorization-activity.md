@@ -1,10 +1,11 @@
 ---
 # feeds-aggregator-nfb7
 title: Content categorization activity
-status: todo
+status: completed
 type: feature
+priority: normal
 created_at: 2026-03-11T16:25:58Z
-updated_at: 2026-03-11T16:25:58Z
+updated_at: 2026-03-11T17:41:30Z
 parent: feeds-aggregator-vxnm
 ---
 
