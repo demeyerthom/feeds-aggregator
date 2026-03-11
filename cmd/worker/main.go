@@ -250,15 +250,9 @@ func main() {
 		Name: internal.GetFunctionName(internalactivity.FetchHTML),
 	})
 	w.RegisterActivityWithOptions(
-		internalactivity.CreateSummary(feedItemCollection, zenClient, model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
+		internalactivity.ProcessContent(feedItemCollection, zenClient, model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
-			Name: internal.GetFunctionName(internalactivity.CreateSummary),
-		},
-	)
-	w.RegisterActivityWithOptions(
-		internalactivity.CategorizeContent(feedItemCollection, zenClient, model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
-		activity.RegisterOptions{
-			Name: internal.GetFunctionName(internalactivity.CategorizeContent),
+			Name: internal.GetFunctionName(internalactivity.ProcessContent),
 		},
 	)
 

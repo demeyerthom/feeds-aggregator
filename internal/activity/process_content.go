@@ -3,6 +3,7 @@ package activity
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"os"
 	"path/filepath"
 
@@ -14,6 +15,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.temporal.io/sdk/activity"
 )
+
+// ErrInvalidCategoryCount is returned when the number of categories is not between 1 and 5
+var ErrInvalidCategoryCount = errors.New("categories must be between 1 and 5")
 
 // processContentResponse represents the JSON response from the LLM
 type processContentResponse struct {
