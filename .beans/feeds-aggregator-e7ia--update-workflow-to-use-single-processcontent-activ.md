@@ -1,10 +1,11 @@
 ---
 # feeds-aggregator-e7ia
 title: Update workflow to use single ProcessContent activity
-status: todo
+status: completed
 type: task
+priority: normal
 created_at: 2026-03-11T19:50:20Z
-updated_at: 2026-03-11T19:50:20Z
+updated_at: 2026-03-11T20:15:26Z
 parent: feeds-aggregator-dft7
 blocked_by:
     - feeds-aggregator-ak1k
@@ -31,3 +32,17 @@ Context & Research:
 Open Questions: None
 
 Dependencies: This task depends on feeds-aggregator-ak1k being completed first
+
+## Summary of Changes
+
+Updated internal/workflow/ingest_feed_item.go:
+- Updated doc comment from 'four activities' to 'three activities'
+- Updated activity list in doc comment to: 'add feed item, fetch HTML, and process content'
+- Removed CreateSummary activity execution
+- Removed CategorizeContent activity execution
+- Added single ProcessContent activity execution as the third activity
+- Updated comment for third activity to 'process content (summary and categories)'
+
+Build verification: go build ./internal/workflow succeeded
+
+## Coder Notes\n- Updated doc comment from 'four activities' to 'three activities'\n- Replaced CreateSummary and CategorizeContent with single ProcessContent call\n- Updated activity list in doc comment\n- Build verified successful

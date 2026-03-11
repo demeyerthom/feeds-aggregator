@@ -11,7 +11,7 @@ import (
 )
 
 // IngestFeedItem is the workflow function that orchestrates feed item ingestion.
-// It executes four activities in sequence: add feed item, fetch HTML, create summary, and categorize content.
+// It executes three activities in sequence: add feed item, fetch HTML, and process content.
 //
 // @param ctx - Workflow context
 // @param feedItem - The feed item to ingest
@@ -44,17 +44,10 @@ func IngestFeedItem() func(ctx workflow.Context, feedItem internal.FeedItem) err
 			return err
 		}
 
-		// Third activity: create summary from the fetched HTML
-		err = workflow.ExecuteActivity(ctx, internal.GetFunctionName(activity.CreateSummary), feedItemDoc).Get(ctx, nil)
+		// Third activity: process content (summary and categories)
+		err = workflow.ExecuteActivity(ctx, internal.GetFunctionName(activity.ProcessContent), feedItemDoc).Get(ctx, nil)
 		if err != nil {
-			workflow.GetLogger(ctx).Error("createSummaryActivity activity failed.", "Error", err)
-			return err
-		}
-
-		// Fourth activity: categorize the content
-		err = workflow.ExecuteActivity(ctx, internal.GetFunctionName(activity.CategorizeContent), feedItemDoc).Get(ctx, nil)
-		if err != nil {
-			workflow.GetLogger(ctx).Error("categorizeContentActivity activity failed.", "Error", err)
+			workflow.GetLogger(ctx).Error("processContentActivity activity failed.", "Error", err)
 			return err
 		}
 
