@@ -219,6 +219,12 @@ func main() {
 			Name: internal.GetFunctionName(internalactivity.CreateSummary),
 		},
 	)
+	w.RegisterActivityWithOptions(
+		internalactivity.CategorizeContent(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir),
+		activity.RegisterOptions{
+			Name: internal.GetFunctionName(internalactivity.CategorizeContent),
+		},
+	)
 
 	slog.Info("Starting worker", "taskQueue", internal.TaskQueueName)
 

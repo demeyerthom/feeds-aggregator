@@ -1,10 +1,11 @@
 ---
 # feeds-aggregator-r6l3
 title: Update workflow to include categorization step
-status: todo
+status: completed
 type: task
+priority: normal
 created_at: 2026-03-11T16:26:37Z
-updated_at: 2026-03-11T16:26:37Z
+updated_at: 2026-03-11T16:52:25Z
 parent: feeds-aggregator-nfb7
 blocked_by:
     - feeds-aggregator-ycb8
