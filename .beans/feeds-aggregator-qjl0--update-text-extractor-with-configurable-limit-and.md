@@ -1,11 +1,11 @@
 ---
 # feeds-aggregator-qjl0
 title: Update text extractor with configurable limit and metrics
-status: todo
+status: completed
 type: task
 priority: normal
 created_at: 2026-03-11T17:33:24Z
-updated_at: 2026-03-11T17:34:32Z
+updated_at: 2026-03-11T17:43:53Z
 parent: feeds-aggregator-vm05
 blocked_by:
     - feeds-aggregator-e8t3
@@ -31,3 +31,5 @@ Context & Research:
 - Use metric.WithExplicitBucketBoundaries for custom buckets
 
 Dependencies: Task 1 (config added)
+
+## Coder Notes\n- Changed ExtractArticleText to closure pattern: ExtractArticleText(limit int) func(htmlStr string) (string, bool)\n- Added Int64Histogram metric with custom bucket boundaries\n- Added slog.Warn when text is truncated\n- Metric recorded for all extractions before truncation

@@ -217,13 +217,13 @@ func main() {
 		Name: internal.GetFunctionName(internalactivity.FetchHTML),
 	})
 	w.RegisterActivityWithOptions(
-		internalactivity.CreateSummary(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir),
+		internalactivity.CreateSummary(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CreateSummary),
 		},
 	)
 	w.RegisterActivityWithOptions(
-		internalactivity.CategorizeContent(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir),
+		internalactivity.CategorizeContent(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CategorizeContent),
 		},

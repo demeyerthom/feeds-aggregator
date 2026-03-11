@@ -1,11 +1,11 @@
 ---
 # feeds-aggregator-tyjl
 title: Register activities with text limit config in worker
-status: todo
+status: completed
 type: task
 priority: normal
 created_at: 2026-03-11T17:34:29Z
-updated_at: 2026-03-11T17:34:43Z
+updated_at: 2026-03-11T19:13:49Z
 parent: feeds-aggregator-vm05
 blocked_by:
     - feeds-aggregator-mzip
@@ -25,3 +25,5 @@ Context & Research:
 - Activities need to be updated to accept the text limit parameter
 
 Dependencies: Tasks 3 and 4
+
+## Coder Notes\n- Updated CreateSummary registration to pass cfg.TextExtractor.Limit\n- Updated CategorizeContent registration to pass cfg.TextExtractor.Limit

@@ -21,7 +21,7 @@ import (
 // @param feedItemDoc - The FeedItemDocument containing the document ID and link
 // @return error - Returns an error if summary creation fails
 // @author GitHub Copilot
-func CreateSummary(c *mongo.Collection, client openai.Client, model, dataDir string) func(ctx context.Context, feedItemDoc internal.FeedItemDocument) error {
+func CreateSummary(c *mongo.Collection, client openai.Client, model, dataDir string, textLimit int) func(ctx context.Context, feedItemDoc internal.FeedItemDocument) error {
 	return func(ctx context.Context, feedItemDoc internal.FeedItemDocument) error {
 		logger := activity.GetLogger(ctx)
 
@@ -35,7 +35,8 @@ func CreateSummary(c *mongo.Collection, client openai.Client, model, dataDir str
 		logger.Info("Read HTML file", "id", feedItemDoc.ID.Hex(), "size", len(htmlContent))
 
 		// Extract article text and build a robust prompt
-		articleText, ok := textextractor.ExtractArticleText(string(htmlContent))
+		extractText := textextractor.ExtractArticleText(textLimit)
+		articleText, ok := extractText(string(htmlContent))
 		if !ok || len(articleText) == 0 {
 			articleText = textextractor.StripHTMLToPlainText(string(htmlContent))
 		}

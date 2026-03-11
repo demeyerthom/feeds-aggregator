@@ -1,7 +1,6 @@
 ---
 mode: all
 description: Creates comprehensive implementation plans by researching the codebase, consulting documentation, and identifying edge cases. Use when you need a detailed plan before implementing a feature or fixing a complex issue.
-model: opencode/big-pickle
 ---
 
 # Planning Agent

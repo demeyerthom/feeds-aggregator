@@ -26,7 +26,7 @@ var ErrInvalidCategoryCount = errors.New("categories must be between 1 and 5")
 // @param feedItemDoc - The FeedItemDocument containing the document ID, link, and title
 // @return error - Returns an error if categorization fails or JSON parsing fails
 // @author Thomas De Meyer
-func CategorizeContent(c *mongo.Collection, client openai.Client, model, dataDir string) func(ctx context.Context, feedItemDoc internal.FeedItemDocument) error {
+func CategorizeContent(c *mongo.Collection, client openai.Client, model, dataDir string, textLimit int) func(ctx context.Context, feedItemDoc internal.FeedItemDocument) error {
 	return func(ctx context.Context, feedItemDoc internal.FeedItemDocument) error {
 		logger := activity.GetLogger(ctx)
 
@@ -40,7 +40,8 @@ func CategorizeContent(c *mongo.Collection, client openai.Client, model, dataDir
 		logger.Info("Read HTML file for categorization", "id", feedItemDoc.ID.Hex(), "size", len(htmlContent))
 
 		// Extract article text
-		articleText, ok := textextractor.ExtractArticleText(string(htmlContent))
+		extractText := textextractor.ExtractArticleText(textLimit)
+		articleText, ok := extractText(string(htmlContent))
 		if !ok || len(articleText) == 0 {
 			articleText = textextractor.StripHTMLToPlainText(string(htmlContent))
 		}

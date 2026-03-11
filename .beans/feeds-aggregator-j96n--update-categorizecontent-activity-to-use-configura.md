@@ -1,11 +1,11 @@
 ---
 # feeds-aggregator-j96n
 title: Update CategorizeContent activity to use configurable text limit
-status: todo
+status: completed
 type: task
 priority: normal
 created_at: 2026-03-11T17:34:23Z
-updated_at: 2026-03-11T17:34:40Z
+updated_at: 2026-03-11T19:12:01Z
 parent: feeds-aggregator-vm05
 blocked_by:
     - feeds-aggregator-qjl0
@@ -23,3 +23,5 @@ Context & Research:
 - Activity uses closure pattern to receive dependencies
 
 Dependencies: Task 2 (text extractor updated)
+
+## Coder Notes\n- Added textLimit parameter to CategorizeContent function\n- Changed ExtractArticleText call to use closure pattern with textLimit
