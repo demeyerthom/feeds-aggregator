@@ -15,7 +15,8 @@ You create plans. You do NOT write code. You may only:
 1. **Clarify Epic Connection**: Before drafting the plan, ask the user:
    - Should this feature be attached to an existing epic? If so, which one?
    - Should a new epic be created for this feature?
-   - Or should this feature not be connected to any epic?
+   - Or should this feature not be connected to any epic? 
+   Default should be to NOT use an epic
    
 2. **Research**: Search the codebase thoroughly. Read the relevant files. Find existing patterns.
 3. **Verify**: Use #context7 and #fetch to check documentation for any libraries/APIs involved. Don't assume—verify.

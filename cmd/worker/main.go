@@ -62,9 +62,14 @@ type Configuration struct {
 	TextExtractor struct {
 		Limit int `env:"TEXT_LIMIT,default=400000"`
 	}
-	Zen struct {
-		APIKey string `env:"ZEN_API_KEY"`
-		Model  string `env:"ZEN_MODEL,default=big-pickle"`
+	Ollama struct {
+		Host  string `env:"OLLAMA_HOST,default=http://localhost:11434"`
+		Model string `env:"OLLAMA_MODEL,default=gemma3"`
+	}
+	OpenCode struct {
+		Host   string `env:"OPENCODE_HOST,default=https://opencode.ai/zen/v1"`
+		Model  string `env:"OPENCODE_MODEL,default=big-pickle"`
+		APIKey string `env:"OPENCODE_API_KEY"`
 	}
 }
 
@@ -172,16 +177,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Initialize Zen client
-	if cfg.Zen.APIKey == "" {
-		slog.Error("ZEN_API_KEY is required")
+	// Initialize OpenCode client
+	if cfg.OpenCode.APIKey == "" {
+		slog.Error("OPENCODE_API_KEY is required")
 		os.Exit(1)
 	}
 	zenClient = openai.NewClient(
-		option.WithAPIKey(cfg.Zen.APIKey),
-		option.WithBaseURL("https://opencode.ai/zen/v1/"),
+		option.WithAPIKey(cfg.OpenCode.APIKey),
+		option.WithBaseURL(cfg.OpenCode.Host),
 	)
-	slog.Info("Initialized Zen client", "model", cfg.Zen.Model)
+	slog.Info("Initialized OpenCode client", "model", cfg.OpenCode.Model, "host", cfg.OpenCode.Host)
 
 	// Create interceptor
 	tracingInterceptor, err := opentracing.NewInterceptor(opentracing.TracerOptions{})
@@ -217,13 +222,13 @@ func main() {
 		Name: internal.GetFunctionName(internalactivity.FetchHTML),
 	})
 	w.RegisterActivityWithOptions(
-		internalactivity.CreateSummary(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
+		internalactivity.CreateSummary(feedItemCollection, zenClient, cfg.OpenCode.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CreateSummary),
 		},
 	)
 	w.RegisterActivityWithOptions(
-		internalactivity.CategorizeContent(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
+		internalactivity.CategorizeContent(feedItemCollection, zenClient, cfg.OpenCode.Model, cfg.Storage.HTMLDir, cfg.TextExtractor.Limit),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CategorizeContent),
 		},

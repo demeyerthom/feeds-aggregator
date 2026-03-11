@@ -28,7 +28,7 @@ services:
       - TEMPORAL_HOST=temporal:7233
       - OTEL_HOST=otel-collector:4318
       - OLLAMA_HOST=http://ollama:11434
-      - OLLAMA_MODEL=${OLLAMA_MODEL:-gemma3}
+      - OLLAMA_MODEL=qwen3.5:27b
       - LOG_LEVEL=${LOG_LEVEL:-info}
     restart: unless-stopped
     networks:
