@@ -26,9 +26,10 @@ type FeedItem struct {
 
 // FeedItemDocument is the MongoDB document model for storing feed items
 type FeedItemDocument struct {
-	ID        primitive.ObjectID `bson:"_id,omitempty"`
-	Link      string             `bson:"link"`
-	Title     string             `bson:"title"`
-	Summary   string             `bson:"summary,omitempty"`
-	CreatedAt time.Time          `bson:"created_at"`
+	ID         primitive.ObjectID `bson:"_id,omitempty"`
+	Link       string             `bson:"link"`
+	Title      string             `bson:"title"`
+	Summary    string             `bson:"summary,omitempty"`
+	Categories []string           `bson:"categories"`
+	CreatedAt  time.Time          `bson:"created_at"`
 }

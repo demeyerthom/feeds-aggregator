@@ -1,10 +1,11 @@
 ---
 # feeds-aggregator-8287
 title: Update FeedItemDocument type to include Categories field
-status: todo
+status: completed
 type: task
+priority: normal
 created_at: 2026-03-11T16:26:07Z
-updated_at: 2026-03-11T16:26:07Z
+updated_at: 2026-03-11T16:39:20Z
 parent: feeds-aggregator-nfb7
 ---
 
@@ -16,3 +17,6 @@ Acceptance Criteria:
 - FeedItemDocument struct has Categories field
 - Field has correct bson tag
 - Code compiles successfully
+
+## Summary of Changes
+- Added  field with  tag to  struct in 
