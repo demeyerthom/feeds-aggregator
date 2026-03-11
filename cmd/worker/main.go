@@ -65,7 +65,7 @@ type Configuration struct {
 	Ollama struct {
 		Enabled bool   `env:"OLLAMA_ENABLED,default=false"`
 		Host    string `env:"OLLAMA_HOST,default=http://localhost:11434"`
-		Model   string `env:"OLLAMA_MODEL,default=gemma3"`
+		Model   string `env:"OLLAMA_MODEL,default=qwen3.5:27b"`
 	}
 	OpenCode struct {
 		Enabled bool   `env:"OPENCODE_ENABLED,default=false"`
