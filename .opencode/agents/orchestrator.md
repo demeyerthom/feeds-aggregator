@@ -43,7 +43,6 @@ Use the Task tool to call the **coder** subagent. Provide:
 Wait for the coder to complete the work.
 
 - If the coder reports insufficient context to complete the task, return to the **user** for input and clarification. After receiving clarification, repeat Step 2.2 with the additional context.
-- After coder completes, add any assumptions and relevant information to the task bean using `beans update <task-id> --body-append "## Coder Notes\n- Assumption/Information..."`
 
 #### Step 2.3: Review
 
@@ -72,14 +71,15 @@ Once all tasks are completed, hand off the feature work to the **user** for appr
 #### Step 3.2: Implement user changes
 
 Hand off the requested changes to the **coder** subagent. Once done:
-1. Add any assumptions and relevant information to the task bean using `beans update <task-id> --body-append "## Coder Notes\n- Assumption/Information..."`
-2. Commit the work with a short description of the changes made using `git add -A && git commit -m "Description of changes"`
-3. Request approval from the user again. Repeat until the user approves.
+1. Commit the work with a short description of the changes made using `git add -A && git commit -m "Description of changes"`
+2. Request approval from the user again. Repeat until the user approves.
 
 - If the coder reports insufficient context to complete the task, return to the **user** for input and clarification.
 
 ### Step 4: Complete
 
 1. Commit any remaining changes with a short description using `git add -A && git commit -m "Description of changes"`
-2. Set the feature status to **completed** using `beans update <feature-id> -s completed`.
-3. If noteworthy changes were made (e.g., new patterns, architectural decisions, or important findings), update AGENTS.md to document these for future reference.
+2. Summarize all completed tasks and work done into the feature bean using `beans update <feature-id> --body-append "## Summary of Work\n- Task 1: Description of what was done\n- Task 2: Description of what was done\n..."`
+3. Delete all completed task beans using `beans delete <task-id>` for each task that was part of this feature
+4. Set the feature status to **completed** using `beans update <feature-id> -s completed`.
+5. If noteworthy changes were made (e.g., new patterns, architectural decisions, or important findings), update AGENTS.md to document these for future reference.
