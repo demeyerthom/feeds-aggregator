@@ -12,10 +12,6 @@
     "xmlUrl": "https://github.blog/changelog/feed/"
   },
   {
-    "title": "Opentofu changelog",
-    "xmlUrl": "https://github.com/opentofu/opentofu/releases.atom"
-  },
-  {
     "title": "Go changelog",
     "xmlUrl": "https://github.com/golang/go/releases.atom"
   },
@@ -44,10 +40,6 @@
     "xmlUrl": "http://golangnews.com/index.xml"
   },
   {
-    "title": "Golang News",
-    "xmlUrl": "http://golangnews.com/index.xml"
-  },
-  {
     "title": "The Go Blog",
     "xmlUrl": "http://blog.golang.org/feeds/posts/default"
   },
@@ -61,7 +53,7 @@
   },
   {
     "title": "Reddit - Golang",
-    "xmlUrl": "https://www.reddit.com/r/golang.rss"
+    "xmlUrl": "https://www.reddit.com/r/golang/.rss"
   },
   {
     "title": "Terraform Weekly",
@@ -73,7 +65,7 @@
   },
   {
     "title": "Reddit - Terraform",
-    "xmlUrl": "https://www.reddit.com/r/terraform.rss"
+    "xmlUrl": "https://www.reddit.com/r/terraform/.rss"
   },
   {
     "title": "Node Weekly",
@@ -81,7 +73,7 @@
   },
   {
     "title": "Reddit - NodeJS",
-    "xmlUrl": "https://www.reddit.com/r/node.rss"
+    "xmlUrl": "https://www.reddit.com/r/node/.rss"
   },
   {
     "title": "React Blog",
@@ -97,11 +89,11 @@
   },
   {
     "title": "Reddit - Technology",
-    "xmlUrl": "https://www.reddit.com/r/technology.rss"
+    "xmlUrl": "https://www.reddit.com/r/technology/.rss"
   },
   {
     "title": "Reddit - Programming",
-    "xmlUrl": "https://www.reddit.com/r/programming.rss"
+    "xmlUrl": "https://www.reddit.com/r/programming/.rss"
   },
   {
     "title": "Scott Hanselman's Blog",
@@ -158,5 +150,85 @@
   {
     "title": "The Guild Blog",
     "xmlUrl": "https://the-guild.dev/feed.xml"
+  },
+  {
+    "title": "The Decision Lab",
+    "xmlUrl": "https://thedecisionlab.com/feed/"
+  },
+  {
+    "title": "Ness Labs",
+    "xmlUrl": "https://nesslabs.com/feed"
+  },
+  {
+    "title": "Farnam Street",
+    "xmlUrl": "https://fs.blog/feed/"
+  },
+  {
+    "title": "The Sunday Wisdom",
+    "xmlUrl": "https://coffeeandjunk.substack.com/feed"
+  },
+  {
+    "title": "Commonplace - The Commoncog Blog",
+    "xmlUrl": "https://commoncog.com/blog/rss/"
+  },
+  {
+    "title": "Scott H Young",
+    "xmlUrl": "https://feeds.feedburner.com/scotthyoung/HAHx"
+  },
+  {
+    "title": "Big Think",
+    "xmlUrl": "https://feeds.feedburner.com/bigthink/main"
+  },
+  {
+    "title": "Steve Blank",
+    "xmlUrl": "http://steveblank.com/feed/"
+  },
+  {
+    "title": "The singularity is nearer",
+    "xmlUrl": "https://geohot.github.io/blog/feed.xml"
+  },
+  {
+    "title": "Hacker News",
+    "xmlUrl": "http://news.ycombinator.com/rss"
+  },
+  {
+    "title": "Guy Kawasaki",
+    "xmlUrl": "http://guykawasaki.com/feed/"
+  },
+  {
+    "title": "Essays - Benedict Evans",
+    "xmlUrl": "http://ben-evans.com/benedictevans?format=rss"
+  },
+  {
+    "title": "First Round Review",
+    "xmlUrl": "http://firstround.com/review/feed.xml"
+  },
+  {
+    "title": "Sam Altman",
+    "xmlUrl": "http://blog.samaltman.com/posts.atom"
+  },
+  {
+    "title": "Andrew Chen",
+    "xmlUrl": "http://andrewchen.co/feed/"
+  },
+  {
+    "title": "Both Sides of the Table",
+    "xmlUrl": "https://bothsidesofthetable.com/feed"
+  },
+  {
+    "title": "OnStartups",
+    "xmlUrl": "http://feed.onstartups.com/onstartups"
+  },
+  {
+    "title": "The Black Box of Product Management - Medium",
+    "xmlUrl": "https://medium.com/feed/the-black-box-of-product-management"
+  },
+  {
+    "title": "Product Life",
+    "xmlUrl": "https://productlife.to/feed"
+  },
+  {
+    "title": "Irrational Exuberance",
+    "xmlUrl": "https://lethain.com/feeds/"
   }
 ]

@@ -5,7 +5,6 @@ import (
 	"log"
 	"log/slog"
 	"net/http"
-	"net/url"
 	"os"
 	"os/signal"
 	"time"
@@ -14,7 +13,8 @@ import (
 	"github.com/demeyerthom/feeds-aggregator/internal"
 	internalactivity "github.com/demeyerthom/feeds-aggregator/internal/activity"
 	internalworkflow "github.com/demeyerthom/feeds-aggregator/internal/workflow"
-	"github.com/ollama/ollama/api"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -33,9 +33,9 @@ const serviceName = "feeds-worker"
 var (
 	cfg Configuration
 
-	rdb          *redis.Client
-	mongoClient  *mongo.Client
-	ollamaClient *api.Client
+	rdb         *redis.Client
+	mongoClient *mongo.Client
+	zenClient   openai.Client
 )
 
 type Configuration struct {
@@ -59,9 +59,9 @@ type Configuration struct {
 	Storage struct {
 		HTMLDir string `env:"HTML_STORAGE_DIR,default=./data"`
 	}
-	Ollama struct {
-		Host  string `env:"OLLAMA_HOST,default=http://localhost:11434"`
-		Model string `env:"OLLAMA_MODEL,default=gemma3"`
+	Zen struct {
+		APIKey string `env:"ZEN_API_KEY"`
+		Model  string `env:"ZEN_MODEL,default=opencode/big-pickle"`
 	}
 }
 
@@ -169,14 +169,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Initialize Ollama client
-	ollamaURL, err := url.Parse(cfg.Ollama.Host)
-	if err != nil {
-		slog.Error("Failed to parse Ollama host URL", "err", err, "host", cfg.Ollama.Host)
+	// Initialize Zen client
+	if cfg.Zen.APIKey == "" {
+		slog.Error("ZEN_API_KEY is required")
 		os.Exit(1)
 	}
-	ollamaClient = api.NewClient(ollamaURL, http.DefaultClient)
-	slog.Info("Initialized Ollama client", "host", cfg.Ollama.Host, "model", cfg.Ollama.Model)
+	zenClient = openai.NewClient(
+		option.WithAPIKey(cfg.Zen.APIKey),
+		option.WithBaseURL("https://opencode.ai/zen/v1/"),
+	)
+	slog.Info("Initialized Zen client", "model", cfg.Zen.Model)
 
 	// Create interceptor
 	tracingInterceptor, err := opentracing.NewInterceptor(opentracing.TracerOptions{})
@@ -212,7 +214,7 @@ func main() {
 		Name: internal.GetFunctionName(internalactivity.FetchHTML),
 	})
 	w.RegisterActivityWithOptions(
-		internalactivity.CreateSummary(feedItemCollection, ollamaClient, cfg.Ollama.Model, cfg.Storage.HTMLDir),
+		internalactivity.CreateSummary(feedItemCollection, zenClient, cfg.Zen.Model, cfg.Storage.HTMLDir),
 		activity.RegisterOptions{
 			Name: internal.GetFunctionName(internalactivity.CreateSummary),
 		},

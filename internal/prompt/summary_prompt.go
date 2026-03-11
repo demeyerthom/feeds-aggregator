@@ -4,6 +4,7 @@ import "fmt"
 
 // BuildSummaryPrompt constructs the prompt for the summarization model.
 func BuildSummaryPrompt(title, url, text string) string {
-	// A compact, instruction-focused prompt for news article summarization
-	return fmt.Sprintf("Summarize the following news article in 2-3 sentences, focusing on the key facts. Title: %s; URL: %s; Content: %s", title, url, text)
+	// A compact, instruction-focused prompt for news article summarization.
+	// The instruction explicitly forbids preamble so the model outputs only the summary text.
+	return fmt.Sprintf("You are a news summarizer. Output only a 2-3 sentence summary of the key facts — no preamble, no titles, no meta-commentary. Title: %s; URL: %s; Content: %s", title, url, text)
 }
