@@ -5,8 +5,7 @@ status: completed
 type: feature
 priority: normal
 created_at: 2026-03-11T16:25:58Z
-updated_at: 2026-03-11T20:24:00Z
-parent: feeds-aggregator-vxnm
+updated_at: 2026-03-12T20:53:10Z
 ---
 
 Add a new Temporal activity that sends article content to an LLM and receives 1-5 category tags. The categories are stored in the MongoDB document alongside the summary.

@@ -173,6 +173,24 @@ func WorkflowName() func(ctx workflow.Context, input InputType) error {
 - Function doc comments with `@param`, `@return`, `@throws`, `@author` tags
 - Keep comments concise — describe what and why, not how
 
+## Documentation
+
+All project documentation lives in the `/docs` folder:
+
+| File | Description |
+|------|-------------|
+| [architecture.md](docs/architecture.md) | System design and data flow |
+| [ingester.md](docs/ingester.md) | Feed polling service |
+| [worker.md](docs/worker.md) | Processing pipeline service |
+
+### Adding New Documentation
+
+When adding new features or components:
+
+1. **Create a new doc file** in `/docs/` (e.g., `docs/new-feature.md`)
+2. **Update this table** in AGENTS.md
+3. **Keep it high-level** - focus on what the component does, not how
+
 ### Types
 
 - All shared types live in `internal/types.go`

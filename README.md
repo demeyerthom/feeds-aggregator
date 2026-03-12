@@ -32,3 +32,11 @@ The system consists of two main components:
 - **Redis** - Caching and deduplication
 - **Ollama** - Local LLM for summarization
 - **OpenTelemetry** - Observability and tracing
+
+## Documentation
+
+See the `/docs` folder for detailed documentation:
+
+- [Architecture](docs/architecture.md) - System design and data flow
+- [Ingester](docs/ingester.md) - Feed polling service
+- [Worker](docs/worker.md) - Processing pipeline service

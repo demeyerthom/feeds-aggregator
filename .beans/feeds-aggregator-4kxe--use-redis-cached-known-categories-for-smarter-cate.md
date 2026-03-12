@@ -3,9 +3,9 @@
 title: Use Redis-cached known categories for smarter categorization
 status: todo
 type: feature
+priority: normal
 created_at: 2026-03-11T20:37:39Z
-updated_at: 2026-03-11T20:37:39Z
-parent: feeds-aggregator-vxnm
+updated_at: 2026-03-12T20:53:10Z
 ---
 
 Description: Cache known categories in Redis and include them in the LLM prompt to encourage reuse of existing categories over creating new ones.
