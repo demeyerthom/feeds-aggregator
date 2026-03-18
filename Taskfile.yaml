@@ -1,6 +1,10 @@
 version: 3
 
 tasks:
+  default:
+    silent: true
+    cmd: task --list-all
+
   remote:sync:
     dotenv:
       - .env.remote
